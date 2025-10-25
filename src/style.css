@@ -1,0 +1,173 @@
+/* set defaults */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #696BCD;
+
+    display: flex;
+    justify-content: center;
+    padding: 4rem;
+}
+
+.main-container {
+    border-radius: 8px;
+    width: 100%;
+    max-width: 40rem;
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-header {
+    text-align: center;
+    background-color: #6699ff;
+    color: white;
+    padding: 20px;
+
+    flex-direction: column;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chat-header h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+.chat-container {
+    flex: 1;
+    padding: 20px;
+    overflow-y: scroll;
+    background-color: white;
+}
+
+.chat-area {
+    display: flex;
+    padding: 20px;
+    gap: 10px;
+    background-color: white;
+    border-top: 1px solid #e2e2e2;
+}
+
+.message-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #e2e2e2;
+    border-radius: 20px;
+    font-size: 16px;
+    outline: none;
+}
+
+/* new button stylings */
+
+button {
+    padding: 12px 16px;
+    color: white;
+    background-color: #6699ff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.control-button {
+    background-color: #8fb3fc;
+}
+
+.control-button.cancel {
+    background-color: #fc8f8f;
+}
+
+.chat-stats {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 15px;
+
+    opacity: 0.8;
+}
+
+/* styling for messages */
+
+.message-content {
+    max-width: 70%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    justify-content: flex-start;
+
+    word-wrap: break-word;
+}
+
+.message {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.message.user {
+    justify-content: flex-end;
+}
+
+.message.user .message-content {
+    background-color: #6699ff;
+    color: white;
+}
+
+.message.bot .message-content {
+    background-color: #f0f0f0;
+    color: #3f3f3f;
+}
+
+/* message actions styling */
+
+/* just dont display at all, then if hovers, change display to flex */
+.message-actions {
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    margin-right: 10px;
+    align-items: center;
+    align-self: center;
+}
+
+.message.user:hover .message-actions {
+    display: flex;
+}
+
+.edit-button,
+.delete-button {
+    padding: 4px 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    border-radius: 3px;
+    outline: none;
+}
+
+.edit-button {
+    background-color: #28a745;
+}
+
+.edit-button:hover {
+    opacity: 0.5;
+}
+
+.delete-button {
+    background-color: #fc8f8f;
+}
+
+.delete-button:hover {
+    opacity: 0.5;
+}
+
+.edit-input {
+    width: 80%;
+    padding: 8px;
+    border: none;
+    margin-bottom: 8px;
+}
