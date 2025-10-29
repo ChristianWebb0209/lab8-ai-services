@@ -64,6 +64,9 @@ export class ChatView {
 
     // render all messages (calls createMessageElement for each message)
     updateMessages(messages) {
+        if (!Array.isArray(messages)) {
+            messages = [messages];
+        }
         // reset
         this.chatContainer.innerHTML = '';
 

@@ -1,12 +1,14 @@
 import { ChatModel } from './model.js';
 import { ChatView } from './view.js';
 import { getBotResponse } from './models/eliza.js';
-import { getGeminiResponse } from './models/gemini.js';
+import { streamGeminiResponse } from './models/gemini.js';
 
 export class ChatController {
     constructor() {
         this.model = new ChatModel();
         this.view = new ChatView(this);
+
+        this.liveChunkMessage = '';
 
         // adding || [] for debugging
         this.model.addObserver((messages) => {
@@ -23,7 +25,8 @@ export class ChatController {
 
         this.model.createMessage(messageText, true);
         this.view.clearInput();
-        this.model.createMessage(this.getModelResponse(messageText), false);
+        this.liveChunkMessage = this.model.createMessage("test", false);
+        this.getModelResponse(messageText)
     }
 
     handleEditMessage(messageId) {
@@ -126,11 +129,29 @@ export class ChatController {
 
 
     // get response from appropriate model
-    getModelResponse(text) {
-        if (this.model.getCurrentModel() == 'eliza') {
-            return getBotResponse(text);
-        } else if (this.model.getCurrentModel() == 'gemini') {
-            return getGeminiResponse(text, this.model.getApiKey());
+    async getModelResponse(text) {
+        const model = this.model.getCurrentModel();
+
+        if (model == 'eliza') {
+            const response = getBotResponse(text);
+            this.liveChunkMessage.text = response;
+            this.model.updateMessage(this.liveChunkMessage.id, this.liveChunkMessage.content);
+            this.view.update(this.model.messages);
+        } else if (model == 'gemini') {
+            const apiKey = this.model.getApiKey();
+
+            this.liveChunkMessage.text = "";
+            this.model.updateMessage(this.liveChunkMessage.id, this.liveChunkMessage.content);
+            this.view.update(this.model.messages);
+            await streamGeminiResponse(
+                text,
+                apiKey,
+                (chunk) => {
+                    this.liveChunkMessage.text += chunk;
+                    this.model.updateMessage(this.liveChunkMessage.id, this.liveChunkMessage.content);
+                    this.view.update(this.model.messages);
+                }
+            );
         }
     }
 
