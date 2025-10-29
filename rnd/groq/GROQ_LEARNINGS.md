@@ -38,3 +38,8 @@ This should be easily enough for a simple chat application, especially one with 
 Looking through the docs, I learned that you can control the temperature (randomness) of theh response, and also set a stream parameter to true to have the api give partial message deltas so you can have the response write itself out as it is generated. This is definately a feature I want to implement.
 
 I used npm to install the grok sdk, then set up script.js with the starter code from the docs, and set up node, then ran the script. It gave an answer similar to the curl.
+
+## Privacy
+
+Groq claims that they don't even train on your data at all or retain it. If this is true it is pretty impressive and puts it above most other LLMs in terms of privacy.
+

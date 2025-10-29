@@ -37,3 +37,7 @@ For the free version of Gemini, the limits are:
 250k TPM (tokens per minute)
 
 The per minute rate is a bit lower than for Groq, but overall it is still plenty for our application.
+
+## Privacy:
+
+Google lets users disable their data being used for training, but by default it is on. This is worse than Groq, but honestly isn't a huge concern. The only time it would be concerning is if someone wants to have a private or personal conversation on this chatbot.
