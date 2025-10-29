@@ -1,0 +1,30 @@
+{
+    "candidates": [
+        {
+            "content": {
+                "parts": [
+                    {
+                        "text": "AI analyzes data for patterns, then uses them to make predictions or decisions."
+                    }
+                ],
+                "role": "model"
+            },
+            "finishReason": "STOP",
+            "index": 0
+        }
+    ],
+    "usageMetadata": {
+        "promptTokenCount": 8,
+        "candidatesTokenCount": 15,
+        "totalTokenCount": 768,
+        "promptTokensDetails": [
+            {
+                "modality": "TEXT",
+                "tokenCount": 8
+            }
+        ],
+        "thoughtsTokenCount": 745
+    },
+    "modelVersion": "gemini-2.5-flash",
+    "responseId": "_GICaeenC_yez7IP487oyAg"
+}
