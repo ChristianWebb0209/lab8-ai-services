@@ -1,6 +1,7 @@
 import { ChatModel } from './model.js';
 import { ChatView } from './view.js';
-import { getBotResponse } from './eliza.js';
+import { getBotResponse } from './models/eliza.js';
+import { getGeminiResponse } from './models/gemini.js';
 
 export class ChatController {
     constructor() {
@@ -16,12 +17,13 @@ export class ChatController {
         this.view.update(this.model.messages || []);
     }
 
+
     handleSendMessage() {
         const messageText = this.view.getInputText();
 
         this.model.createMessage(messageText, true);
         this.view.clearInput();
-        this.model.createMessage(getBotResponse(messageText), false);
+        this.model.createMessage(this.getModelResponse(messageText), false);
     }
 
     handleEditMessage(messageId) {
@@ -120,5 +122,36 @@ export class ChatController {
                 this.view.update(this.model.messages);
             }
         );
+    }
+
+
+    // get response from appropriate model
+    getModelResponse(text) {
+        if (this.model.getCurrentModel() == 'eliza') {
+            return getBotResponse(text);
+        } else if (this.model.getCurrentModel() == 'gemini') {
+            return getGeminiResponse(text, this.model.getApiKey());
+        }
+    }
+
+    // handle model change
+
+    handleModelChange(modelName) {
+        this.model.setCurrentModel(modelName);
+        if (this.model.getCurrentModel() == 'gemini') {
+            console.log(this.model.getCurrentModel());
+
+            if (this.model.apiKey == '')
+                // ask for api key
+                this.view.askForApiKey(
+                    () => {
+                        this.view.showError("invalid api key!");
+                        this.handleModelChange('eliza');
+                    },
+                    (key) => {
+                        this.model.setApiKey(key);
+                    }
+                )
+        }
     }
 }

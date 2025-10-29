@@ -18,6 +18,8 @@ export class ChatView {
         this.importbutton = document.getElementById('import-button');
         this.clearbutton = document.getElementById('clear-button');
 
+        this.modelSelect = document.getElementById('model-select');
+
         this.setupEventListeners();
     }
 
@@ -40,6 +42,9 @@ export class ChatView {
         this.exportbutton.addEventListener('click', () => this.controller.handleExport());
         this.importbutton.addEventListener('click', () => this.fileInput.click());
         this.clearbutton.addEventListener('click', () => this.controller.handleClear());
+
+        // model seelct event listener
+        this.modelSelect.addEventListener('change', (event) => this.controller.handleModelChange(event.target.value));
 
         // when anything happens to the fileINput that means a file got selected, so handle that
         this.fileInput.addEventListener('change', (e) => {
@@ -193,6 +198,16 @@ export class ChatView {
 
     showSuccess(message) {
         alert(`success: ${message}`);
+    }
+
+    // get api key by alert (simplest way)
+    askForApiKey(onCancel, onConfirm) {
+        const apiKey = prompt("Enter Gemini API Key!: ");
+        if (apiKey) {
+            onConfirm(apiKey.trim());
+        } else {
+            onCancel();
+        }
     }
 
 }

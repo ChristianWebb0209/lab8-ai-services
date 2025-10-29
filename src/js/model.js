@@ -6,6 +6,8 @@ export class ChatModel {
         this.messages = [];
         this.observers = [];
         this.storageKey = 'chat-messages-data';
+        this.currentModel = 'eliza';
+        this.apiKey = '';
         this.loadFromLocalStorage();
     }
 
@@ -151,4 +153,12 @@ export class ChatModel {
             return false;
         }
     }
+
+    getCurrentModel() { return this.currentModel };
+
+    setCurrentModel(name) { this.currentModel = name };
+
+    getApiKey() { return this.apiKey }
+
+    setApiKey(key) { this.apiKey = key }
 }

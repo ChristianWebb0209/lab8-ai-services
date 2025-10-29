@@ -85,6 +85,16 @@ button {
     background-color: #fc8f8f;
 }
 
+.dropdown {
+    padding: 12px 16px;
+    color: white;
+    background-color: #8fb3fc;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 .chat-stats {
     display: flex;
     justify-content: space-evenly;
