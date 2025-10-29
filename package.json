@@ -1,0 +1,26 @@
+{
+  "name": "lab8-ai-services",
+  "version": "1.0.0",
+  "description": "Lab 8 is an expansion of lab 7 using http services and implementing api llm features for chatting",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChristianWebb0209/lab8-ai-services.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChristianWebb0209/lab8-ai-services/issues"
+  },
+  "homepage": "https://github.com/ChristianWebb0209/lab8-ai-services#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.9.2"
+  }
+}
